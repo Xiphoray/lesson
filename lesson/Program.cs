@@ -13,19 +13,19 @@ namespace lesson
 
         static void Main(string[] args)
         {
-            while(true)
+            while (true)
             {
                 Console.WriteLine("type your question:");
                 string init = Console.ReadLine();
-                if(init == "1.1")
+                if (init == "1.1")
                 {
                     Q.Q1_1();
                 }
-                if(init == "1.2")
+                if (init == "1.2")
                 {
                     Q.Q1_2();
                 }
-                if(init == "2.4")
+                if (init == "2.4")
                 {
                     Q.Q2_4();
                 }
@@ -33,7 +33,7 @@ namespace lesson
                 {
                     Q.Q2_6();
                 }
-                if(init == "2.7")
+                if (init == "2.7")
                 {
                     Q.Q2_7();
                 }
@@ -41,15 +41,15 @@ namespace lesson
                 {
                     Q.Q2_10();
                 }
-                if(init == "2.13")
+                if (init == "2.13")
                 {
                     Q.Q2_13();
                 }
-                if(init == "2.14")
+                if (init == "2.14")
                 {
                     Q.Q2_14();
                 }
-                if(init == "2.17")
+                if (init == "2.17")
                 {
                     Q.Q2_17();
                 }
@@ -63,13 +63,13 @@ namespace lesson
             }
         }
 
-        
+
     }
     class Q
     {
         static public void Q1_1()
         {
-            while(true)
+            while (true)
             {
                 Console.WriteLine("type your numbers :");
                 string dataStr = Console.ReadLine() + " ";
@@ -84,7 +84,7 @@ namespace lesson
                     double z = Convert.ToDouble(a);
                     Sum += Math.Sqrt(z);
                 }
-                Console.WriteLine(Sum+"\n");
+                Console.WriteLine(Sum + "\n");
 
                 Console.WriteLine("Do you want to leave Q1.1 ?          Y/N");
                 string b = Console.ReadLine();
@@ -93,25 +93,25 @@ namespace lesson
                     break;
                 }
             }
-            
+
         }
 
         static string key;
         static public void Q1_2()
         {
-            
-            string[] arr = new string[10];
+
+            string[] arr = new string[30];
             int flag = 0;
             arr[0] = "1";
             flag++;
             arr[1] = "3";
             flag++;
-            while(true)
+            while (true)
             {
-                while(true)
+                while (true)
                 {
 
-                    Console.WriteLine("Add ?          A\nDelete ?          D\nChange ?          C\nCheck ?          H\nGo back ?          Y/N");
+                    Console.WriteLine("Add ?          A\nDelete ?          D\nChange ?          C\nCheck ?          H\nSort?         L\nGo back ?          Y");
                     string r = Console.ReadLine();
                     if (r == "Y")
                     {
@@ -126,33 +126,64 @@ namespace lesson
                     }
                     if (r == "D")
                     {
-                        arr[flag] = " ";
-                        flag--;
-                    }
-                    if (r == "C")
-                    {
-                        while(true)
+                        while (true)
                         {
-                            Console.WriteLine("Which do you want to change ?");
-                            int clist = Convert.ToInt16(Console.ReadLine());
-                            if(clist >= flag)
+                            Console.WriteLine("Which do you want to delete ?");
+                            int dlist = Convert.ToInt16(Console.ReadLine())-1;
+                            if (dlist >= flag)
                             {
                                 Console.WriteLine("There is no number");
                                 continue;
                             }
                             else
                             {
-                                Console.WriteLine("What do you want to change to ?");
-                                arr[clist] = Console.ReadLine();
+                                for (int i = dlist; i < flag; i++)
+                                { 
+                                    arr[i] = arr[i + 1];
+                                }
+                                flag--;    
+
+                            }
+
+                            Console.WriteLine("Do you want to leave delete ?          Y/N");
+                            string b = Console.ReadLine();
+                            if (b == "Y")
+                            {
                                 break;
                             }
                         }
-                        
+                    }
+                    if (r == "C")
+                    {
+                        while (true)
+                        {
+                            Console.WriteLine("Which do you want to change ?");
+                            int clist = Convert.ToInt16(Console.ReadLine())-1;
+                            if (clist >= flag)
+                            {
+                                Console.WriteLine("There is no number");
+                                
+                            }
+                            else
+                            {
+                                Console.WriteLine("What do you want to change to ?");
+                                arr[clist] = Console.ReadLine();
+                                
+                            }
+
+                            Console.WriteLine("Do you want to leave change ?          Y/N");
+                            string b = Console.ReadLine();
+                            if (b == "Y")
+                            {
+                                break;
+                            }
+                        }
+
 
                     }
                     if (r == "H")
                     {
-                        while(true)
+                        while (true)
                         {
                             Console.WriteLine("Which do you want check ?          number or ALL\nGo back ?               Y/N");
                             string w = Console.ReadLine();
@@ -162,33 +193,50 @@ namespace lesson
                             }
                             else if (w == "ALL")
                             {
+                                int j = 1;
                                 foreach (string n in arr)
                                 {
-                                    Console.WriteLine(n);
+                                    //if (j<=flag)
+                                    {
+                                        Console.WriteLine(j+".   "+n);
+                                        j++;
+                                    }
                                 }
                             }
-                            else 
+                            else
                             {
-                                
+
                                 key = w;
-                                int x = Array.FindIndex(arr,Find);
+                                int x = Array.FindIndex(arr, Find);
                                 if (x != -1)
                                     Console.WriteLine(key + "  数据存在！\n");
                                 else
                                     Console.WriteLine(key + "   数据不存在！\n");
                             }
-                        }                       
+                        }
+                    }
+                    if (r == "L")
+                    {
+                        Array.Sort(arr);
+                        int o = 0;
+                        for (; o < flag; o++)
+                        {
+                            arr[o] = arr[30 - flag + o];
+                            arr[30 - flag + o] = " ";
+                        }
+
+
+                        
                     }
                 }
                 Console.WriteLine("Do you want to leave Q1.2 ?          Y/N");
-                string b = Console.ReadLine();
-                if (b == "Y")
+                string k = Console.ReadLine();
+                if (k == "Y")
                 {
                     break;
                 }
             }
         }
-
         static bool Find(string data)
         {
             if (data == key)
@@ -281,7 +329,7 @@ namespace lesson
         static public void Q2_17()
         {
             string p = Console.ReadLine();
-            if(p == "z")
+            if (p == "z")
             {
                 Console.Write("Please type :");
                 string word = Console.ReadLine() + " ";
@@ -295,12 +343,13 @@ namespace lesson
             }
             else
             {
-                par(' ',',','.');
+                par(' ', ',', '.');
 
             }
         }
         static public void par(params char[] s1)
         {
+            Console.Write("Please type :");
             string word = Console.ReadLine() + " ";
             string[] s2 = word.Split(s1);
             foreach (string item in s2)
